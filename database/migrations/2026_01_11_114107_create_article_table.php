@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('cover')->default('no_cover.jpg');
+            $table->string('cover')->nullable();
             $table->foreignId('made_by')->constrained('users')->cascadeOnDelete()->index();
+            $table->timestamps();
         });
     }
 

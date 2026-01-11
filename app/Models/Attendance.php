@@ -6,9 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
-    protected $table = 'attendance';
+    protected $table = 'attendances';
 
     protected $fillable = [
-        
+        'child_id',
+        'date',
+        'status',
+        'check_in_at',
+        'check_out_at',
+        'note',
+        'recorded_by_user_id',
     ];
+
+    protected $casts = [
+        'date' => 'date',
+        'check_in_at' => 'datetime',
+        'check_out_at' => 'datetime',
+    ];
+
+    public function child()
+    {
+        return $this->belongsTo(Child::class, 'child_id');
+    }
+
+    public function recordedBy()
+    {
+        return $this->belongsTo(User::class, 'recorded_by_user_id');
+    }
 }

@@ -18,4 +18,9 @@ class Article extends Model
     public function author(){
         return $this->belongsTo(User::class, 'made_by');
     }
+
+    public function maker()
+    {
+        return $this->belongsTo(User::class, 'made_by');
+    }
 }

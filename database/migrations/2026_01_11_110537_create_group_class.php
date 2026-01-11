@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('group_class', function (Blueprint $table) {
+            $table->id();
+
             $table->string('title')->nullable();
-            $table->string('made_by');
+            $table->foreignId('made_by')->constrained('users')->cascadeOnDelete()->index();
             $table->foreignId('teacher')->constrained('users')->cascadeOnDelete()->index();
             $table->string('color')->default('#0000FF');
 
+            $table->timestamps();
         });
     }
 

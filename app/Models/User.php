@@ -49,4 +49,39 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    public function parentProfile()
+    {
+        return $this->hasOne(ParentProfile::class, 'user_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Child::class, 'parent_user_id');
+    }
+
+    public function attendancesRecorded()
+    {
+        return $this->hasMany(Attendance::class, 'recorded_by_user_id');
+    }
+
+    public function teamEntries()
+    {
+        return $this->hasMany(OurTeam::class, 'team_id');
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'made_by');
+    }
+
+    public function groupsMade()
+    {
+        return $this->hasMany(Group::class, 'made_by');
+    }
+
+    public function groupsTaught()
+    {
+        return $this->hasMany(Group::class, 'teacher');
+    }
 }
