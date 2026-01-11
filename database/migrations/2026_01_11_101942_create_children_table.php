@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_user_id')->constrained('users')->cascadeOnDelete()->index();
 
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('gender');
             $table->date('date_of_birth');
 
